@@ -3,6 +3,7 @@ package main
 import (
 	"belajar/book"
 	"belajar/handler"
+	"belajar/package/config"
 	"fmt"
 	"log"
 
@@ -12,11 +13,14 @@ import (
 )
 
 func main() {
+	config, err := config.LoadConfig("./package/config")
+	if err != nil {
+		log.Fatal("Can't load config: ", err)
+	}
 	router := gin.Default()
 	v1 := router.Group("/v1")
 
-	dsn := "root:@tcp(127.0.0.1:3306)/belajar_go?charset=utf8mb4&parseTime=True&loc=Local"
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(mysql.Open(config.DBSource), &gorm.Config{})
 	if err != nil {
 		log.Fatal("DB connection failed: ", err)
 	}
@@ -35,7 +39,7 @@ func main() {
 	v1.PUT("/book/:id", bookHandle.UpdateBook)
 	v1.DELETE("/book/:id", bookHandle.DeleteBook)
 
-	router.Run(":8888")
+	router.Run(config.ServerAddress)
 }
 
 // main
