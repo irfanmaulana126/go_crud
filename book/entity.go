@@ -9,5 +9,9 @@ type Book struct {
 	Price       int
 	Rating      int
 	CreatedAt   time.Time
-	UpdatedAt 	time.Time
+	UpdatedAt   time.Time
+}
+
+func (Book) TableName() string {
+	return "books"
 }
