@@ -2,7 +2,7 @@ package main
 
 import (
 	"belajar/book"
-	"belajar/handler"
+	"belajar/book/handler"
 	"belajar/package/config"
 	"fmt"
 	"log"
