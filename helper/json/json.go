@@ -30,6 +30,20 @@ func ErrorResponse(w http.ResponseWriter, r *http.Request, statusCode int, messa
 	WriteJSON(w, statusCode, res)
 }
 
+// Return JSON Error V2
+func ErrorResponseV2(w http.ResponseWriter, r *http.Request, status bool, statusCode int, message interface{}, code string) {
+	res := &responseV2{
+		Status:     status,
+		StatusCode: statusCode,
+		Message:    message,
+		Code:       code,
+	}
+
+	loggingHelper.Addlog(r, "ERROR", message)
+
+	WriteJSON(w, statusCode, res)
+}
+
 // Return JSON Success V3
 func SuccessResponseV3(w http.ResponseWriter, r *http.Request, status bool, code string, data interface{}, pagination *paginationHelper.Page) {
 	meta := &meta{
@@ -42,6 +56,26 @@ func SuccessResponseV3(w http.ResponseWriter, r *http.Request, status bool, code
 	res := &responseV3{
 		Meta: *meta,
 		Data: data,
+	}
+
+	loggingHelper.Addlog(r, "SUCCESS", data)
+
+	WriteJSON(w, http.StatusOK, res)
+}
+
+// Return JSON Success V2
+func SuccessResponseV2(w http.ResponseWriter, r *http.Request, status bool, code string, data interface{}, pagination *paginationHelper.PageV2) {
+	if code == "" {
+		code = "OK"
+	}
+
+	res := &responseV2{
+		Status:     status,
+		StatusCode: http.StatusOK,
+		Message:    "Success",
+		Code:       code,
+		Data:       data,
+		Pagination: pagination,
 	}
 
 	loggingHelper.Addlog(r, "SUCCESS", data)

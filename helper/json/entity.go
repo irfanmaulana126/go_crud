@@ -9,6 +9,14 @@ type response struct {
 	Error   interface{} `json:"error,omitempty"`
 }
 
+type responseV2 struct {
+	Status     bool                     `json:"status"`
+	StatusCode int                      `json:"status_code"`
+	Message    interface{}              `json:"message"`
+	Code       string                   `json:"code"`
+	Pagination *paginationHelper.PageV2 `json:"pagination,omitempty"`
+	Data       interface{}              `json:"data,omitempty"`
+}
 type responseV3 struct {
 	Meta meta        `json:"meta"`
 	Data interface{} `json:"data"`

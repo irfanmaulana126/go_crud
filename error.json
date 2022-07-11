@@ -1,0 +1,142 @@
+{
+    "1000":{
+       "MessageBE":"Success",
+       "MessageFE":"" 
+    },
+    "1001":{
+        "MessageBE":"Success Create",
+        "MessageFE":"" 
+     },
+    "1004":{
+        "MessageBE":"There is no data to send for this request",
+        "MessageFE":"" 
+     },
+    "2001":{
+        "MessageBE":"failed to get data user from token",
+        "MessageFE":""
+    },
+    "2002":{
+        "MessageBE":"Password not valid",
+        "MessageFE":""
+    },
+    "3101":{
+        "MessageBE":"cannot convert string to int (path)",
+        "MessageFE":""
+    },
+    "3201":{
+        "MessageBE":"cannot convert string to int (body)",
+        "MessageFE":""
+    },
+    "3202":{
+        "MessageBE":"format plat nomor tidak sesuai",
+        "MessageFE":""
+    },
+    "3203":{
+        "MessageBE":"%s is required",
+        "MessageFE":""
+    },
+    "3204":{
+        "MessageBE":"%s must be a valid phone number",
+        "MessageFE":""
+    },
+    "3205":{
+        "MessageBE":"%s must be number",
+        "MessageFE":""
+    },
+    "3206":{
+        "MessageBE":"Failed decode json",
+        "MessageFE":""
+    },
+    "3207":{
+        "MessageBE":"Validation Failed",
+        "MessageFE":""
+    },
+    "3208":{
+        "MessageBE":"Verification code not valid",
+        "MessageFE":""
+    },
+    "3302":{
+        "MessageBE":"page must greater than 0",
+        "MessageFE":"" 
+    },
+    "3303":{
+        "MessageBE":"page cannot be empty",
+        "MessageFE":"" 
+    },
+    "3304":{
+        "MessageBE":"page invalid, must be integer",
+        "MessageFE":"" 
+    },
+    "3305":{
+        "MessageBE":"format plat nomor tidak sesuai",
+        "MessageFE":"" 
+    },
+    "4001":{
+        "MessageBE":"Failed get data from 3rd party",
+        "MessageFE":"" 
+    },
+    "4002":{
+        "MessageBE":"Workshop Cart is empty",
+        "MessageFE":"" 
+    },
+    "4003":{
+        "MessageBE":"Package Detail matching query does not exists",
+        "MessageFE":"" 
+    },
+    "4004":{
+        "MessageBE":"'str' object has no attribute 'data'",
+        "MessageFE":"" 
+    },
+    "4005":{
+        "MessageBE":"Workshop has been closed",
+        "MessageFE":"" 
+    },
+    "4006":{
+        "MessageBE":"Package invalid this workshop",
+        "MessageFE":"" 
+    },
+    "5101":{
+        "MessageBE":"failed to fetch data",
+        "MessageFE":"" 
+    },
+    "5102":{
+        "MessageBE":"failed to create data",
+        "MessageFE":"" 
+    },
+    "5103":{
+        "MessageBE":"failed to update data",
+        "MessageFE":"" 
+    },
+    "5104":{
+        "MessageBE":"Failed to delete data",
+        "MessageFE":"" 
+    },
+    "5105":{
+        "MessageBE":"format plat nomor tidak sesuai",
+        "MessageFE":"" 
+    },
+    "5106":{
+        "MessageBE":"Cannot update booking status to previous status or same status",
+        "MessageFE":"" 
+    },
+    "5107":{
+        "MessageBE":"Data not found",
+        "MessageFE":"" 
+    },
+    "6001":{
+        "MessageBE":"choosen page more than total page",
+        "MessageFE":"" 
+    },
+    "6002":{
+        "MessageBE":"page must greater than 0",
+        "MessageFE":"" 
+    },
+    "6003":{
+        "MessageBE":"page cannot be empty",
+        "MessageFE":"" 
+    },
+    "6004":{
+        "MessageBE":"page invalid, must be integer",
+        "MessageFE":"" 
+    }
+}

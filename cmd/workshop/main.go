@@ -1,50 +1,31 @@
 package main
 
 import (
-	"belajar/book"
-	"belajar/book/handler"
-	"belajar/package/config"
+	"belajar/package/manager"
+	"belajar/package/server"
 	"fmt"
-	"log"
+	"os"
 
-	"github.com/gin-gonic/gin"
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
+	masterRoutes "belajar/api/master/delivery"
 )
 
-func main() {
-	config, err := config.LoadConfig("./package/config")
+func run() error {
+	mgr, err := manager.NewInit()
 	if err != nil {
-		log.Fatal("Can't load config: ", err)
-	}
-	router := gin.Default()
-	v1 := router.Group("/v1")
-
-	db, err := gorm.Open(mysql.Open(config.DBSource), &gorm.Config{})
-	if err != nil {
-		log.Fatal("DB connection failed: ", err)
+		return err
 	}
 
-	fmt.Println("DB connection succeeded")
+	server := server.NewServer(mgr.GetConfig())
+	server.Router.Use(mgr.GetMiddleware().InitLog)
 
-	db.AutoMigrate(&book.Book{})
+	masterRoutes.NewRoutes(server.Router, mgr)
 
-	bookRepository := book.NewRepository(db)
-	bookService := book.NewService(bookRepository)
-	bookHandle := handler.NewBookHandler(bookService)
-
-	v1.POST("/book", bookHandle.CreateBooks)
-	v1.GET("/books", bookHandle.GetBooks)
-	v1.GET("/book/:id", bookHandle.GetByIdBook)
-	v1.PUT("/book/:id", bookHandle.UpdateBook)
-	v1.DELETE("/book/:id", bookHandle.DeleteBook)
-
-	router.Run(config.ServerAddress)
+	server.RegisterRouter(server.Router)
+	return server.ListenAndServe()
 }
-
-// main
-// handler
-// service
-// repository
-// db
-// mysql
+func main() {
+	if err := run(); err != nil {
+		fmt.Fprintf(os.Stderr, "%v\n", err)
+		os.Exit(1)
+	}
+}
